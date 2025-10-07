@@ -23,5 +23,7 @@ export async function checkAuth(opts) {
   } catch (e) {
     // fetch の中断やネットワークエラーはローカルの値を返す
     return { authenticated: local };
+  } finally {
+    clearTimeout(timeoutId); // ← finally で必ず解放
   }
 }
